@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Menú desplegable 100% CSS</title>
+<style type="text/css">
+/* Este tag nos permite cargar una fuente externa para luego aplicarla como estilo */
+@font-face {
+  font-family: 'AlteHaasGroteskRegular';
+  src: url(AlteHaasGroteskRegular.ttf);
+}
+
+body {
+	margin: 20px 0 0 0; font-family: 'AlteHaasGroteskRegular', Arial, sans-serif; font-size: 1.6em;
+}
+/* Hacemos que los links (etiqueta a) se comporten como bloque para aumentar su zona cliqueable  */
+dl a {
+	display: block;
+	text-decoration: none;
+	color: #646464;
+	padding: 10px 0 10px 25px;
+}
+/* Elimino margenes predeterminados y aplico una sombra blanca para todos los textos, estoy aplica el filete iluminado de los textos del menú */
+dl, dt, dd, ul, li {
+	padding: 0;
+	margin: 0;
+	text-shadow: rgba(255, 255, 255, 1) 1px 1px 0px;
+}
+/* Defino el ancho del menú, su borde, la sombra y las esquinas redondeadas */
+dl {
+	width: 400px;
+	-moz-box-shadow: rgba(50, 50, 50, 0.1) 6px 6px 0px;
+	-webkit-box-shadow: rgba(50, 50, 50, 0.1) 6px 6px 0px;
+	box-shadow: rgba(50, 50, 50, 0.1) 6px 6px 0px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	margin: 0 auto;
+	border: 5px solid #b9b9b9;
+}
+/* Este es el título de la lista, tiene aplicado un fondo degradado. también debo hacer que sus esquinas superiores sean redondeadas */
+dt {
+	background: #999;
+	color: white;
+	padding: 10px 0;
+	text-align: center;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#343434', endColorstr='#999');
+	background: -webkit-gradient(linear, left top, left bottom, from(#343434), to(#999));
+	background: -moz-linear-gradient(top,  #343434,  #999);
+	border-top-right-radius: 16px;
+	border-top-left-radius: 16px;
+	-webkit-border-top-left-radius: 16px;
+	-webkit-border-top-right-radius: 16px;
+	text-shadow: rgba(0, 0, 0, 1) 1px 1px 2px;
+}
+
+dd {
+	background: #e1e1e1;
+	overflow: hidden;
+}
+
+dd li {
+	display: block;
+	height: 0; /* Esta será la altura inicial de cada uno de los subitems */
+	overflow: hidden; /* Oculto el contenido que queda por fuera de los li, ya que tienen 0 de alutra */
+	-webkit-transition: all 0.5s ease-in-out; /* Efectúo la transición de 0 a 37 px de altura para Chrome y Safari */
+	-moz-transition: all 0.5s ease-in-out; /* Efectúo la transición de 0 a 37 px de altura para Mozila */
+	-ms-transition: all 0.5s ease-in-out; /* Efectúo la transición de 0 a 37 px de altura algunas versiones de IE */
+	-o-transition: all 0.5s ease-in-out; /* Efectúo la transición de 0 a 37 px de altura para Opera */
+	transition: all 0.5s ease-in-out; /* Efectúo la transición de 0 a 37 px de altura para el resto de los navegadores */
+	behavior: url(pie.htc); /* Este es un archivo de comportamiento para que funcione en algunos navegadores IE antiguos */
+}
+dd:hover li {
+	height: 37px; /* Esta será la altura final de cada uno de los subitems */
+}
+/* Aplico color de fondo a todos los ítems (dd) impares */
+dd:nth-child(even){
+	background: #e1e1e1;
+}
+/* Aplico otro color de fondo a todos los ítems (dd) pares (esto genera el cebrado) */
+dd:nth-child(odd){
+  	background: #f4f4f4;
+}
+/* Hago que el último ítem(dd) tenga sus esquinas inferiores redondeadas */
+dd:last-child {
+	border-bottom-right-radius: 17px;
+	border-bottom-left-radius: 17px;
+	-webkit-border-bottom-left-radius: 18px;
+	-webkit-border-bottom-right-radius: 18px;
+}
+/* Hago que el último subítem (li) también tenga sus esquinas inferiores redondeadas */
+dd:last-child li:last-child {
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	border: none;
+}
+/* Mientras el menú este contraído, oculto todos los subítems */
+li {
+	display: none;
+	font-size: 0.6em;
+	text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0px;
+	border-bottom: 1px solid #e1e1e1;
+}
+/* A todos los nodos hijos (no sus nietos) a le aplico un padding izquierdo. Con esto hago que los subítems queden un poco desfasados con respecto a los ítems */
+li > a {
+	padding-left: 45px;
+}
+/* Este es el aspecto que tomaran los subítems (li) cada vez que pase con el ratón por encima de ellos */
+li a:hover {
+	background: #C6C6C6;
+	color: white;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#787878', endColorstr='#a6a6a6');
+	background: -webkit-gradient(linear, left top, left bottom, from(#787878), to(#a6a6a6));
+	background: -moz-linear-gradient(top,  #787878,  #a6a6a6);
+	text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 1px;
+}
+/* Este es el aspecto que tomará el último subítem (li) cada vez que pase con el ratón por encima de el */
+dd:last-child li:last-child a:hover{
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+}
+/* Color de fondo para todos los subítems (li) impares */
+li:nth-child(even){
+  	background: #f8f8f8;
+}
+/* Color de fondo para todos los subítems (li) pares */
+li:nth-child(odd){
+	background: white;
+}
+
+</style>
+<!--[if IE 6]>
+<style type="text/css">
+	li { display: block; }
+</style>
+<![endif]-->
+</head>
+
+<body>
+<dl>
+  <dt>Menú semana 24</dt>
+  <dd><a href="#">Lunes</a>
+    <ul>
+      <li><a href="#">Pasta</a></li>
+      <li><a href="#">Pollo</a></li>
+      <li><a href="#">Fruta</a></li>
+    </ul>
+  </dd>
+  <dd><a href="#">Martes</a>
+  	<ul>
+      <li><a href="#">Lentejas</a></li>
+      <li><a href="#">Ensalada</a></li>
+      <li><a href="#">Fruta</a></li>
+    </ul>
+  </dd>
+  <dd><a href="#">Miercoles</a>
+    <ul>
+      <li><a href="#">Arroz</a></li>
+      <li><a href="#">Pescado</a></li>
+      <li><a href="#">Yogurt</a></li>
+    </ul>
+  </dd>
+  <dd><a href="#">Jueves</a>
+  	<ul>
+      <li><a href="#">Legumbres</a></li>
+      <li><a href="#">Pollo</a></li>
+        <li><a href="#">Yogurt</a></li>
+    </ul>
+  </dd>
+  <dd><a href="#">Viernes</a>
+  	<ul>
+      <li><a href="#">Patatas</a></li>
+      <li><a href="#">Pescado</a></li>
+      <li><a href="#">Helado</a></li>
+    </ul>
+  </dd>
+</dl>
+</body>
+</html>
